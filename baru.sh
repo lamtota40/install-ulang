@@ -11,7 +11,6 @@ cd
 
 mount -o subvolid=5 /dev/sda1 /mnt
 cd /mnt
-ls
 btrfs subvolume delete @
 btrfs subvolume delete @home
 btrfs subvolume snapshot @clean @
