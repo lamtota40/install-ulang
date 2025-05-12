@@ -1,3 +1,4 @@
+#!/bin/bash
 
 # Pastikan folder snapshot ada & snapshoot
 sudo mkdir -p /btrfs_snapshots
