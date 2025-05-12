@@ -1,16 +1,20 @@
 #!/bin/bash
 
-# Restore snapshot ke kondisi awal
+set -e
 
-# Mount root dari subvolid=5 (root Btrfs)
-mount -o subvolid=5 /dev/sda1 /mnt
+# Mount root Btrfs top-level
+mount -o subvolid=5,defaults $(findmnt -no SOURCE /) /mnt
 
-# Delete subvolume aktif
-btrfs subvolume delete /mnt/@
-btrfs subvolume delete /mnt/@home
+# Hapus subvolume lama
+btrfs subvolume delete /mnt/@ || true
+btrfs subvolume delete /mnt/@home || true
 
-# Restore dari snapshot bersih
+# Restore snapshot
 btrfs subvolume snapshot /mnt/btrfs_snapshots/@_clean /mnt/@
 btrfs subvolume snapshot /mnt/btrfs_snapshots/@home_clean /mnt/@home
 
+# Set default subvolume ke @
+btrfs subvolume set-default $(btrfs subvolume show /mnt/@ | grep 'Subvolume ID' | awk '{print $3}') /mnt
+
+# Unmount
 umount /mnt
