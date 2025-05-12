@@ -13,3 +13,19 @@ btrfs subvolume delete @
 btrfs subvolume snapshot @clean @
 sync
 reboot
+
+mount -o subvolid=5 /dev/sda1 /mnt
+cd /mnt
+ls
+
+# Hapus subvolume lama
+btrfs subvolume delete @
+btrfs subvolume delete @home
+
+# Kembalikan dari snapshot
+btrfs subvolume snapshot @clean @
+btrfs subvolume snapshot @home_clean @home
+
+# sinkronisasi & reboot
+sync
+reboot
