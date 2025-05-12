@@ -69,3 +69,4 @@ btrfs subvolume set-default "$(btrfs subvolume show /mnt/@ | grep 'Subvolume ID'
 # Unmount
 umount /mnt
 EOF
+sudo chmod +x /usr/local/bin/btrfs-restore.sh
