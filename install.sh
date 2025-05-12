@@ -1,4 +1,5 @@
 #!/bin/bash
+wget /usr/local/bin/btrfs-restore.sh
 
 sudo tee /etc/systemd/system/btrfs-restore.service > /dev/null <<EOF
 [Unit]
