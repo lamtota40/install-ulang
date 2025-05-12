@@ -2,6 +2,7 @@
 
 #buat ram
 #buat webserver
+sudo apt remove matchbox-keyboard -y
 sudo systemctl enable autobootgrml.service
 sudo mkdir -p /mnt/btrfs_root
 sudo mount -o subvolid=5 /dev/sda1 /mnt/btrfs_root
