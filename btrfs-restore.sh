@@ -7,10 +7,6 @@ ROOT_DEV=$(findmnt -no SOURCE / | sed 's/\[.*\]//')
 # Mount root Btrfs top-level
 mount -o subvolid=5 "$ROOT_DEV" /mnt
 
-# Pastikan subvolume @ dan @home tidak sedang dipakai
-sudo umount /mnt/@ || true
-sudo umount /mnt/@home || true
-
 # Cek apakah direktori btrfs_snapshots ada dan berisi snapshot yang diperlukan
 if [ ! -d /btrfs_snapshots ]; then
   echo "Direktori /btrfs_snapshots tidak ditemukan!"
@@ -32,8 +28,8 @@ btrfs subvolume delete /mnt/@ || true
 btrfs subvolume delete /mnt/@home || true
 
 # Restore snapshot
-btrfs subvolume snapshot /btrfs_snapshots/@_clean /mnt/@
-btrfs subvolume snapshot /btrfs_snapshots/@home_clean /mnt/@home
+btrfs subvolume snapshot /mnt/btrfs_snapshots/@_clean /mnt/@
+btrfs subvolume snapshot /mnt/btrfs_snapshots/@home_clean /mnt/@home
 
 # Set default subvolume ke @
 btrfs subvolume set-default "$(btrfs subvolume show /mnt/@ | grep 'Subvolume ID' | awk '{print $3}')" /mnt
