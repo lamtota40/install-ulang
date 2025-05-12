@@ -28,7 +28,7 @@ EOF
 sudo chmod +x /etc/rc.local
 sudo systemctl enable rc-local
 
-file btrfs-restore.sh
+sudo tee /usr/local/bin/btrfs-restore.sh > /dev/null <<EOF
 #!/bin/bash
 set -e
 
@@ -62,9 +62,9 @@ btrfs subvolume delete /mnt/@home || true
 btrfs subvolume snapshot /mnt/btrfs_snapshots/@_clean /mnt/@
 btrfs subvolume snapshot /mnt/btrfs_snapshots/@home_clean /mnt/@home
 
-
 # Set default subvolume ke @
 btrfs subvolume set-default "$(btrfs subvolume show /mnt/@ | grep 'Subvolume ID' | awk '{print $3}')" /mnt
 
 # Unmount
 umount /mnt
+EOF
