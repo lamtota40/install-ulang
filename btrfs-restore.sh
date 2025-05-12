@@ -2,19 +2,22 @@
 
 set -e
 
-# Mount root Btrfs top-level
-mount -o subvolid=5,defaults $(findmnt -no SOURCE /) /mnt
+# Temukan partisi root aktif
+ROOT_DEV=$(findmnt -no SOURCE /)
 
-# Hapus subvolume lama
+# Mount root dari subvolid=5 (top-level Btrfs)
+mount -o subvolid=5 "$ROOT_DEV" /mnt
+
+# Hapus subvolume lama (abaikan error jika belum ada)
 btrfs subvolume delete /mnt/@ || true
 btrfs subvolume delete /mnt/@home || true
 
-# Restore snapshot
+# Restore dari snapshot
 btrfs subvolume snapshot /mnt/btrfs_snapshots/@_clean /mnt/@
 btrfs subvolume snapshot /mnt/btrfs_snapshots/@home_clean /mnt/@home
 
 # Set default subvolume ke @
 btrfs subvolume set-default $(btrfs subvolume show /mnt/@ | grep 'Subvolume ID' | awk '{print $3}') /mnt
 
-# Unmount
+# Unmount kembali
 umount /mnt
