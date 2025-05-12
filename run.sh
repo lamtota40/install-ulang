@@ -25,7 +25,7 @@ sudo mkdir -p /etc/grml/partconf
 sudo wget raw.githubusercontent.com/lamtota40/install-ulang/main/autorun-grml.sh -P /etc/grml/partconf
 sudo bash -c "echo 'CUSTOM_BOOTOPTIONS=\"ssh=pas123 dns=8.8.8.8,8.8.4.4 netscript=raw.githubusercontent.com/lamtota40/install-ulang/main/autorun-grml.sh toram\"' >> /etc/default/grml-rescueboot"
 sudo update-grub
-sudo grub-reboot "$GRML_ENTRY"
+#sudo grub-reboot "$GRML_ENTRY"
 
 sudo tee /etc/systemd/system/autobootgrml.service > /dev/null <<EOF
 [Unit]
