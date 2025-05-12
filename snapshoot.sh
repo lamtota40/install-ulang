@@ -35,7 +35,7 @@ restore_system() {
   echo "Melakukan restore sistem..."
 
   # Tanya pengguna untuk memilih partisi yang ingin di-mount
-  read -e -i "/dev/vda2" -p "Masukkan partisi untuk mount (misalnya /dev/vda2): " partition
+  read -e -i "/dev/sda1" -p "Masukkan partisi untuk mount (misalnya /dev/sda1): " partition
 
   if [ ! -e "$partition" ]; then
     echo "Partisi tidak ditemukan: $partition"
