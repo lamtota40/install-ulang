@@ -1,3 +1,10 @@
+
+# Pastikan folder snapshot ada & snapshoot
+sudo mkdir -p /btrfs_snapshots
+sudo btrfs subvolume snapshot -r / /btrfs_snapshots/@_clean
+sudo btrfs subvolume snapshot -r /home /btrfs_snapshots/@home_clean
+
+# Membuat boot grub
 sudo bash -c 'cat << EOF >> /etc/grub.d/40_custom
 menuentry "restore snapshot btrfs" {
     insmod btrfs
@@ -8,6 +15,7 @@ menuentry "restore snapshot btrfs" {
     initrd /boot/initrd.img-\$(uname -r)
 }
 EOF'
+
 sudo update-grub
 sudo reboot-grub "restore snapshot btrfs"
 
