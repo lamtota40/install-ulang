@@ -3,7 +3,7 @@
 # Pastikan folder snapshot ada
 sudo mkdir -p /btrfs_snapshots
 
-sudo wget https://raw.githubusercontent.com/lamtota40/install-ulang/refs/heads/main/btrfs-restore.sh -P /usr/local/bin/btrfs-restore.sh
+sudo wget https://raw.githubusercontent.com/lamtota40/install-ulang/refs/heads/main/btrfs-restore.sh -P /usr/local/bin/
 sudo tee /etc/systemd/system/btrfs-restore.service > /dev/null <<EOF
 [Unit]
 Description=Restore Btrfs snapshot on boot
