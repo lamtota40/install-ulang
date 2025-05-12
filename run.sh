@@ -41,4 +41,4 @@ WantedBy=multi-user.target
 EOF
 
 sudo systemctl daemon-reload
-sudo systemctl enable autobootgrml.service
+sudo systemctl disable autobootgrml.service
