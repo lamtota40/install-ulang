@@ -18,6 +18,7 @@ ExecStart=/usr/local/bin/btrfs-restore.sh
 WantedBy=basic.target
 EOF
 
+sudo chmod +x /usr/local/bin/btrfs-restore.sh
 sudo systemctl daemon-reload
 sudo systemctl enable btrfs-restore.service
 
