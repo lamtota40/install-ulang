@@ -17,3 +17,7 @@ EOF
 
 sudo systemctl daemon-reload
 sudo systemctl enable btrfs-restore.service
+
+
+sudo btrfs subvolume snapshot -r / /btrfs_snapshots/@_clean
+sudo btrfs subvolume snapshot -r /home /btrfs_snapshots/@home_clean
