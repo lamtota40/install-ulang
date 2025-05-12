@@ -4,6 +4,7 @@ sudo mount -o subvolid=5 /dev/sda1 /mnt/btrfs_root
 cd /mnt/btrfs_root
 sudo btrfs subvolume snapshot -r @ @clean
 sudo btrfs subvolume snapshot -r @home @home_clean
+cd
 
 #restore dari GRML
 mount -o subvolid=5 /dev/sda1 /mnt
