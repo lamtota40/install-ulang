@@ -29,3 +29,14 @@ btrfs subvolume snapshot @home_clean @home
 # sinkronisasi & reboot
 sync
 reboot
+
+
+lubuntu@ubuntu:~$ sudo mkdir -p /mnt/btrfs_root
+lubuntu@ubuntu:~$ sudo mount -o subvolid=5 /dev/sda1 /mnt/btrfs_root
+lubuntu@ubuntu:~$ cd /mnt/btrfs_root
+lubuntu@ubuntu:/mnt/btrfs_root$ sudo btrfs subvolume snapshot -r @ @clean
+Create a readonly snapshot of '@' in './@clean'
+lubuntu@ubuntu:/mnt/btrfs_root$ sudo btrfs subvolume snapshot -r @home @home_clean
+Create a readonly snapshot of '@home' in './@home_clean'
+lubuntu@ubuntu:/mnt/btrfs_root$ ls
+@  @clean  @home  @home_clean
