@@ -24,7 +24,7 @@ sudo parted /dev/sda unit B print
 sudo reboot
 ####################################################
 # Membuat partisi & Restore dari GRML toram (Live CD)
-sudo parted /dev/sdb
+sudo parted /dev/sda
 (parted) unit B
 (parted) print
 (parted) mklabel msdos (yes)
@@ -34,8 +34,8 @@ sudo parted /dev/sdb
 (parted) quit
 
 #format partisi tipe btrfs
-sudo mkfs.btrfs /dev/sdb1
-sudo mkfs.btrfs /dev/sdb2
+sudo mkfs.btrfs /dev/sda1
+sudo mkfs.btrfs /dev/sda2
 
 #mount dan restore
 sudo mount /dev/sda1 /mnt
