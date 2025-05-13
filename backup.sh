@@ -22,13 +22,19 @@ sudo btrfs send /mnt/@_backup | gzip -c > btrfs-sda1-backup.img.gz
 sudo btrfs subvolume delete /mnt/@_backup
 
 # Membuat partisi & Restore dari GRML toram (Live CD)
-sudo parted /dev/sda1
+sudo parted /dev/sda
 mklabel msdos
 mkpart primary btrfs 1048576B 14400094207B
 set 1 boot on
 quit
 
-#format partisi sistem btrfs
+sudo parted /dev/sda
+mklabel msdos
+mkpart primary btrfs 1048576B 14400094207B
+set 1 boot on
+quit
+
+#format partisi tipe btrfs
 sudo mkfs.btrfs /dev/sda1
 
 
