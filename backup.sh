@@ -1,3 +1,13 @@
+
+sudo mount -o subvol=@ /dev/sda1 /mnt
+sudo rm -rf /mnt/home
+sudo mount -o subvol=@home /dev/sda1 /mnt/tmp
+sudo mv /mnt/tmp/* /mnt/home/
+sudo umount /mnt/tmp
+sudo btrfs subvolume delete /mnt/tmp
+sudo cp /etc/fstab /etc/fstab.bak
+sudo sed -i '/^[^#]*[[:space:]]\/home[[:space:]]\+btrfs.*subvol=@home/d' /etc/fstab
+
 #mount
 sudo mount /dev/sda1 /mnt
 #melihat list
