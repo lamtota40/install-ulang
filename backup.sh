@@ -25,7 +25,9 @@ sudo reboot
 ####################################################
 # Membuat partisi & Restore dari GRML toram (Live CD)
 sudo parted /dev/sdb
-(parted) mklabel msdos
+(parted) unit B
+(parted) print
+(parted) mklabel msdos (yes)
 (parted) mkpart primary btrfs 1048576B 14400094207B
 (parted) set 1 boot on
 (parted) mkpart primary btrfs 14400094208B 19971178495B
