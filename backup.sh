@@ -20,3 +20,27 @@ sudo btrfs send /mnt/@_backup | gzip -c > btrfs-sda1-backup.img.gz
 
 # bersihkan
 sudo btrfs subvolume delete /mnt/@_backup
+
+# Membuat partisi & Restore dari GRML toram (Live CD)
+sudo parted /dev/sda1
+mklabel msdos
+mkpart primary btrfs 1048576B 14400094207B
+set 1 boot on
+quit
+
+#format partisi sistem btrfs
+sudo mkfs.btrfs /dev/sda1
+
+
+
+sudo mount /dev/sda1 /mnt
+sudo gunzip -c btrfs-sda1-backup.img.gz | sudo btrfs receive /mnt
+
+# Rename & delete yang lama
+sudo btrfs subvolume snapshot /mnt/@_backup /mnt/@
+sudo btrfs subvolume delete /mnt/@_backup
+
+# ganti UUID dengan yang baru
+sudo cat /mnt/@/etc/fstab
+sudo blkid
+sudo nano /mnt/@/etc/fstab
