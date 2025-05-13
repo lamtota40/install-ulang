@@ -34,8 +34,8 @@ sudo parted /dev/sda
 (parted) quit
 
 #format partisi tipe btrfs
-sudo mkfs.btrfs /dev/sda1
-sudo mkfs.btrfs /dev/sda2
+sudo mkfs.btrfs -f /dev/sda1
+sudo mkfs.btrfs -f /dev/sda2
 
 #mount dan restore
 sudo mount /dev/sda1 /mnt
