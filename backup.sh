@@ -21,6 +21,7 @@ sudo btrfs send /mnt/@_backup | gzip -c > btrfs-sda1-backup.img.gz
 sudo btrfs subvolume delete /mnt/@_backup
 # catat size semua partisi dalam byte agar presisi
 sudo parted /dev/sda unit B print
+sudo reboot
 ####################################################
 # Membuat partisi & Restore dari GRML toram (Live CD)
 sudo parted /dev/sdb
