@@ -16,7 +16,7 @@ sudo btrfs subvolume list /mnt
 
 #backup
 sudo btrfs subvolume snapshot -r /mnt/@ /mnt/@_backup
-sudo btrfs send /mnt/@_backup | gzip -c > btrfs-root-backup.img.gz
+sudo btrfs send /mnt/@_backup | gzip -c > btrfs-sda1-backup.img.gz
 
 #sudo btrfs subvolume snapshot -r /mnt/@home /mnt/@home_backup
 #sudo btrfs send /mnt/@home_backup | gzip -c > btrfs-home-backup.img.gz
