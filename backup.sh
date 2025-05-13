@@ -12,6 +12,7 @@ sudo btrfs subvolume delete /mnt/tmp
 sudo rm -rf /mnt/tmp
 sudo cp /mnt/etc/fstab /mnt/etc/fstab.bak
 sudo sed -i '/^[^#]*[[:space:]]\/home[[:space:]]\+btrfs.*subvol=@home/d' /mnt/etc/fstab
+sudo unmount /mnt
 sudo reboot
 ####################################################
 # Backup snapshoot btfrs
