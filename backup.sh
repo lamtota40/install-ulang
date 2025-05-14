@@ -1,14 +1,13 @@
 # Megabungkan @home ke @
+#!/bin/bash
+
 sudo mount -o subvol=@ /dev/sda1 /mnt
 sudo rm -rf /mnt/home
 sudo mkdir /mnt/home
 sudo mount -o subvol=@home /dev/sda1 /mnt/tmp
 sudo mv /mnt/tmp/* /mnt/home/
-bash
-sudo mv /mnt/tmp/.[!.]* /mnt/home/ || true
-exit
+#sudo mv /mnt/tmp/.[!.]* /mnt/home/ || true
 sudo umount /mnt/tmp
-sudo btrfs subvolume delete /mnt/tmp
 sudo rm -rf /mnt/tmp
 sudo cp /mnt/etc/fstab /mnt/etc/fstab.bak
 sudo sed -i '/^[^#]*[[:space:]]\/home[[:space:]]\+btrfs.*subvol=@home/d' /mnt/etc/fstab
