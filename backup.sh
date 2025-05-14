@@ -3,8 +3,8 @@ sudo mount -o subvol=@ /dev/sda1 /mnt
 sudo rm -rf /mnt/home
 sudo mkdir /mnt/home
 sudo mount -o subvol=@home /dev/sda1 /mnt/tmp
-bash
 sudo mv /mnt/tmp/* /mnt/home/
+bash
 sudo mv /mnt/tmp/.[!.]* /mnt/home/
 exit
 sudo umount /mnt/tmp
