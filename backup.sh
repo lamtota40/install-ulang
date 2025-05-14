@@ -43,7 +43,6 @@ sudo btrfs send /mnt/sda1/@_backup > btrfs-sda1-backup.img
 #backup ke partisi lain misal /dev/sda2
 sudo mkdir /mnt/sda2
 sudo mount /dev/sda2 /mnt/sda2
-sudo btrfs subvolume snapshot -r / /mnt/sda2/@_backup
 sudo btrfs send /mnt/sda1/@_backup > /mnt/sda2/btrfs-sda1-backup.img
 sudo btrfs send /mnt/sda1/@_backup | gzip -c > /mnt/sda2/btrfs-sda1-backup.img.gz
 
