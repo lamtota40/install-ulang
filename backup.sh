@@ -15,7 +15,11 @@ sudo sed -i '/^[^#]*[[:space:]]\/home[[:space:]]\+btrfs.*subvol=@home/d' /mnt/et
 sudo mount --bind /dev /mnt/dev
 sudo mount --bind /proc /mnt/proc
 sudo mount --bind /sys /mnt/sys
-sudo chroot /mnt
+sudo chroot /mnt /bin/bash -c "
+grub-reboot 0
+grub-set-default 'Ubuntu'
+update-grub
+"
 sudo grub-reboot 0
 sudo grub-set-default 'Ubuntu'
 sudo update-grub
