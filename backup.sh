@@ -11,6 +11,18 @@ sudo umount /mnt/tmp
 sudo rm -rf /mnt/tmp
 sudo cp /mnt/etc/fstab /mnt/etc/fstab.bak
 sudo sed -i '/^[^#]*[[:space:]]\/home[[:space:]]\+btrfs.*subvol=@home/d' /mnt/etc/fstab
+#mengembalikan boot ke OS utama
+sudo mount --bind /dev /mnt/dev
+sudo mount --bind /proc /mnt/proc
+sudo mount --bind /sys /mnt/sys
+sudo chroot /mnt
+sudo grub-reboot 0
+sudo grub-set-default 'Ubuntu'
+sudo update-grub
+exit
+sudo umount /mnt/dev
+sudo umount /mnt/proc
+sudo umount /mnt/sys
 sudo umount /mnt
 sudo reboot
 ####################################################
