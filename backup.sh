@@ -52,7 +52,7 @@ sudo umount /mnt/sda1
 sudo umount /mnt/sda2
 
 # bersihkan
-sudo btrfs subvolume delete /mnt/@_backup
+sudo btrfs subvolume delete /mnt/sda1/@_backup
 sudo btrfs balance start /
 
 # catat size semua partisi dalam byte agar presisi
