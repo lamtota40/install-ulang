@@ -16,14 +16,10 @@ sudo mount --bind /dev /mnt/dev
 sudo mount --bind /proc /mnt/proc
 sudo mount --bind /sys /mnt/sys
 sudo chroot /mnt /bin/bash -c "
-grub-reboot 0
-grub-set-default 'Ubuntu'
-update-grub
-"
 sudo grub-reboot 0
 sudo grub-set-default 'Ubuntu'
 sudo update-grub
-exit
+"
 sudo umount /mnt/dev
 sudo umount /mnt/proc
 sudo umount /mnt/sys
