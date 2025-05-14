@@ -6,7 +6,7 @@ sudo rm -rf /mnt/home
 sudo mkdir /mnt/home
 sudo mount -o subvol=@home /dev/sda1 /mnt/tmp
 sudo mv /mnt/tmp/* /mnt/home/
-#sudo mv /mnt/tmp/.[!.]* /mnt/home/ || true
+sudo mv /mnt/tmp/.[!.]* /mnt/home/ || true
 sudo umount /mnt/tmp
 sudo rm -rf /mnt/tmp
 sudo cp /mnt/etc/fstab /mnt/etc/fstab.bak
