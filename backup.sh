@@ -27,14 +27,31 @@ sudo umount /mnt/sys
 sudo umount /mnt
 sudo reboot
 ####################################################
+#melihat list btrfs
+sudo btrfs subvolume list /mnt/sda1
+
+
 # Backup snapshoot btfrs
 #mount
-sudo mount /dev/sda1 /mnt
-#melihat list btrfs
-sudo btrfs subvolume list /mnt
-#backup
-sudo btrfs subvolume snapshot -r /mnt/@ /mnt/@_backup
-sudo btrfs send /mnt/@_backup | gzip -c > btrfs-sda1-backup.img.gz
+sudo mkdir /mnt/sda1
+sudo mount /dev/sda1 /mnt/sda1
+sudo btrfs subvolume snapshot -r /mnt/sda1/@ /mnt/sda1/@_backup
+sudo btrfs send /mnt/sda1/@_backup | gzip -c > btrfs-sda1-backup.img.gz
+#backup tanpa kompresi
+sudo btrfs send /mnt/sda1/@_backup > btrfs-sda1-backup.img
+
+#backup ke partisi lain misal /dev/sda2
+sudo mkdir /mnt/sda2
+sudo mount /dev/sda2 /mnt/sda2
+sudo btrfs subvolume snapshot -r / /mnt/sda2/@_backup
+sudo btrfs send /mnt/sda1/@_backup > /mnt/sda2/btrfs-sda1-backup.img
+sudo btrfs send /mnt/sda1/@_backup | gzip -c > /mnt/backup/btrfs-sda1-backup.img.gz
+
+#umount
+sudo umount /mnt/sda1
+sudo umount /mnt/sda2
+
+
 # bersihkan
 sudo btrfs subvolume delete /mnt/@_backup
 # catat size semua partisi dalam byte agar presisi
