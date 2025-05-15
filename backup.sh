@@ -94,6 +94,8 @@ sudo mkfs.btrfs -f /dev/sda2
 #mount dan restore
 sudo mount /dev/sda1 /mnt
 sudo gunzip -c btrfs-sda1-backup.img.gz | sudo btrfs receive /mnt
+#restore tidak di kompres
+sudo btrfs receive /mnt/restore < /root/btrfs-sda1-backup.img
 
 # Rename & delete yang lama
 sudo btrfs subvolume snapshot /mnt/@_backup /mnt/@
@@ -103,3 +105,31 @@ sudo btrfs subvolume delete /mnt/@_backup
 sudo cat /mnt/@/etc/fstab
 sudo blkid
 sudo nano /mnt/@/etc/fstab
+
+
+######################################################
+sudo mkfs.btrfs -f -L rootfs /dev/vda3
+#mount
+sudo mkdir /mnt/restore
+sudo mount /dev/vda3 /mnt/restore
+
+#melihat list
+sudo btrfs subvolume list /
+sudo btrfs subvolume set-default 257 /mnt/restore
+
+#edit fstab
+sudo blkid /dev/vda3
+sudo nano /mnt/restore/etc/fstab
+
+#install ulang grub
+sudo mount --bind /dev /mnt/restore/dev
+sudo mount --bind /proc /mnt/restore/proc
+sudo mount --bind /sys /mnt/restore/sys
+sudo chroot /mnt/restore
+grub-install /dev/vda
+sudo grub-reboot 0
+sudo grub-set-default 'Ubuntu'
+update-grub
+exit
+#umount
+umount /mnt/root/dev /mnt/root/proc /mnt/root/sys
