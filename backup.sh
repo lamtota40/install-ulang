@@ -1,6 +1,11 @@
 #melihat list
 sudo btrfs subvolume list /
 
+#perbesar partisi
+sudo mkdir /mnt/root
+sudo mount /dev/sda1 /mnt/root
+sudo btrfs filesystem resize max /mnt/root
+
 #delete btfs
 sudo mkdir -p /mnt/btrfs
 sudo mount /dev/sda1 /mnt/btrfs
