@@ -1,3 +1,13 @@
+#melihat list
+sudo btrfs subvolume list /
+
+#delete btfs
+sudo mkdir -p /mnt/btrfs
+sudo mount /dev/sda1 /mnt/btrfs
+sudo btrfs subvolume list /mnt/btrfs
+sudo btrfs subvolume delete /mnt/btrfs/@home
+
+
 # Megabungkan @home ke @
 #!/bin/bash
 
