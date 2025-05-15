@@ -20,7 +20,6 @@ sudo mv /mnt/tmp/* /mnt/home/
 sudo mv /mnt/tmp/.[!.]* /mnt/home/ || true
 sudo umount /mnt/tmp
 sudo rm -rf /mnt/tmp
-sudo btrfs subvolume delete /mnt/@home
 sudo cp /mnt/etc/fstab /mnt/etc/fstab.bak
 sudo sed -i '/^[^#]*[[:space:]]\/home[[:space:]]\+btrfs.*subvol=@home/d' /mnt/etc/fstab
 #mengembalikan boot ke OS utama
