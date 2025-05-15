@@ -1,10 +1,22 @@
 #melihat list
 sudo btrfs subvolume list /
 
-#perbesar partisi
+#cek kapasitas
+sudo btrfs filesystem usage /mnt/root
+
+#perbesar sisi real disk dan hapus sda2
+sudo parted /dev/sda
+(parted) print               # Lihat struktur partisi
+(parted) rm 2                # Hapus sda2
+(parted) resizepart 1 100%   # Perbesar sda1 sampai akhir disk
+(parted) quit
+
+
+#perbesar sisi Btfrs(partisi unlocated harus ada)
 sudo mkdir /mnt/root
 sudo mount /dev/sda1 /mnt/root
 sudo btrfs filesystem resize max /mnt/root
+sudo umount /mnt/root
 
 #delete btfs
 sudo mkdir -p /mnt/btrfs
