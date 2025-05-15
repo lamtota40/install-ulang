@@ -60,16 +60,13 @@ sudo btrfs subvolume list /mnt/sda1
 
 # Backup snapshoot btfrs
 #mount
-sudo mkdir /mnt/sda1
-sudo mount /dev/sda1 /mnt/sda1
+sudo mkdir -p /mnt/sda1
+sudo mount -o subvolid=0 /dev/sda1 /mnt/sda1
 sudo btrfs subvolume snapshot -r /mnt/sda1/@ /mnt/sda1/@_backup
 sudo btrfs send /mnt/sda1/@_backup | gzip -c > btrfs-sda1-backup.img.gz
 #backup tanpa kompresi
 sudo btrfs send /mnt/sda1/@_backup > btrfs-sda1-backup.img
-
 #backup ke partisi lain misal /dev/sda2
-sudo mkdir /mnt/sda2
-sudo mount /dev/sda2 /mnt/sda2
 sudo btrfs send /mnt/sda1/@_backup > /mnt/sda2/btrfs-sda1-backup.img
 sudo btrfs send /mnt/sda1/@_backup | gzip -c > /mnt/sda2/btrfs-sda1-backup.img.gz
 
