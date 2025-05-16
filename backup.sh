@@ -161,8 +161,9 @@ sudo rsync -avz -e ssh /path/lokal/btrfs-sda1-backup.img.gz root@1.2.3.4:/mnt
 #estrak dan di terima btfrs
 sudo gunzip -c /mnt/btrfs-sda1-backup.img.gz | sudo btrfs receive /mnt
 
-# Rename & delete yang lama
+# Rename, set default & delete yang lama
 sudo btrfs subvolume snapshot /mnt/@_backup /mnt/@
+sudo btrfs subvolume set-default /mnt/@
 sudo btrfs subvolume delete /mnt/@_backup
 
 sudo mkdir /mnt/restore
