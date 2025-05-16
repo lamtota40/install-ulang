@@ -44,7 +44,10 @@ sudo umount /mnt/root
 
 #mount ulang
 sudo mkdir /mnt/restore
-sudo mount -o subvol=@ /dev/sda3 /mnt/restore
+sudo mount -o subvol=@ /dev/vda3 /mnt/restore
+
+#memastikan file/forder sudah muncul
+ls /mnt/restore
 
 #install ulang grub
 sudo mount --bind /dev /mnt/restore/dev
