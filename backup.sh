@@ -135,3 +135,11 @@ exit
 umount /mnt/root/dev /mnt/root/proc /mnt/root/sys
 
 #################
+sudo parted /dev/vda
+UNIT B
+print
+resizepart 3 20GB
+set 1 boot on
+mkpart primary btfrs 20GB 100%
+
+
