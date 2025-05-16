@@ -150,6 +150,11 @@ sudo mkfs.btrfs /dev/vda4
 sudo mkswap /dev/vda5
 sudo swapon /dev/vda5
 
+#mount
+sudo mkdir /mnt/restore
+sudo mount /dev/vda3 /mnt/restore
+sudo gunzip -c btrfs-sda1-backup.img.gz | sudo btrfs receive /mnt/restore
+
 #install ulang grub
 sudo mount --bind /dev /mnt/restore/dev
 sudo mount --bind /proc /mnt/restore/proc
