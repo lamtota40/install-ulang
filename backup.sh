@@ -150,5 +150,16 @@ sudo mkfs.btrfs /dev/vda4
 sudo mkswap /dev/vda5
 sudo swapon /dev/vda5
 
-
+#install ulang grub
+sudo mount --bind /dev /mnt/restore/dev
+sudo mount --bind /proc /mnt/restore/proc
+sudo mount --bind /sys /mnt/restore/sys
+sudo chroot /mnt/restore
+grub-install /dev/vda
+sudo grub-reboot 0
+sudo grub-set-default 'Ubuntu'
+update-grub
+exit
+#umount
+umount /mnt/root/dev /mnt/root/proc /mnt/root/sys
 
