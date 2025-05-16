@@ -166,7 +166,8 @@ sudo btrfs subvolume snapshot /mnt/@_backup /mnt/@
 sudo btrfs subvolume set-default /mnt/@
 sudo btrfs subvolume delete /mnt/@_backup
 
-#cek kembali posisi btfrs
+#cek kembali list & posisi btfrs
+sudo btrfs subvolume list /mnt
 sudo btrfs subvolume get-default /mnt
 
 #mount ulang
