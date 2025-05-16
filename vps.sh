@@ -31,7 +31,7 @@ sudo gunzip -c /mnt/vda4/btrfs-sda1-backup.img.gz | sudo btrfs receive /mnt/root
 ls /mnt/root
 
 # copy ke @, set default
-sudo btrfs subvolume snapshot /mnt/root/@_backup /mnt/@
+sudo btrfs subvolume snapshot /mnt/root/@_backup /mnt/root/@
 sudo btrfs subvolume set-default /mnt/root/@
 
 #cek kembali list & posisi btfrs
