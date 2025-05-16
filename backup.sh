@@ -139,7 +139,13 @@ sudo parted /dev/vda
 UNIT B
 print
 resizepart 3 20GB
-set 1 boot on
-mkpart primary btfrs 20GB 100%
+set 3 boot on
+mkpart primary btfrs 20GB 35GB
+mkpart primary btfrs 35GB 100%
+quit
+sudo mkfs.btfrs /dev/vda4
+sudo mkfs.ext4 /dev/vda5
+
+
 
 
