@@ -5,7 +5,7 @@ unit b
 print
 rm 3
 mkpart primary btfrs 202375168B 20172924927B
-set 3 boot on
+#set 3 boot on
 mkpart primary btrfs 20172924928B 36000000000B
 mkpart primary linux-swap 36000000001B 100%
 quit
