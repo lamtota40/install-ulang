@@ -160,12 +160,13 @@ sudo mount /dev/vda4 /mnt/vda4
 sudo rsync -avz -e ssh /mnt/usb/btrfs-sda1-backup.img.gz root@147.139.143.79:/mnt/vda4
 
 #estrak dan di terima btfrs
-sudo gunzip -c /mnt/btrfs-sda1-backup.img.gz | sudo btrfs receive /mnt
+sudo gunzip -c /mnt/vda4/btrfs-sda1-backup.img.gz | sudo btrfs receive /mnt/vda4
 
 # Rename, set default & delete yang lama
 sudo btrfs subvolume snapshot /mnt/@_backup /mnt/@
 sudo btrfs subvolume set-default /mnt/@
 sudo btrfs subvolume delete /mnt/@_backup
+sudo btrfs-sda1-backup.img.gz
 
 #cek kembali list & posisi btfrs
 sudo btrfs subvolume list /mnt
