@@ -191,6 +191,7 @@ sudo nano /mnt/restore/etc/fstab
 #umount
 umount /mnt/restore/dev /mnt/restore/proc /mnt/restore/sys
 umount /mnt/restore
+umount /mnt
 
 sync
 sudo reboot
