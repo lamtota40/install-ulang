@@ -35,8 +35,8 @@ sudo btrfs subvolume snapshot /mnt/root/@_backup /mnt/root/@
 sudo btrfs subvolume set-default /mnt/root/@
 
 #cek kembali list & posisi btfrs
-sudo btrfs subvolume list /mnt
-sudo btrfs subvolume get-default /mnt
+sudo btrfs subvolume list /mnt/root
+sudo btrfs subvolume get-default /mnt/root
 
 # & delete yang lama
 sudo btrfs subvolume delete /mnt/root/@_backup
