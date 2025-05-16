@@ -133,3 +133,5 @@ update-grub
 exit
 #umount
 umount /mnt/root/dev /mnt/root/proc /mnt/root/sys
+
+#################
