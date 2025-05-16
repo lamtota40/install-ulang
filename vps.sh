@@ -51,6 +51,7 @@ ls /mnt/restore
 
 # atur FSTAB dan ganti UUID dengan yang baru
 sudo cat /mnt/restore/etc/fstab
+sudo cp /mnt/restore/etc/fstab /mnt/restore/etc/fstab.bak
 sudo blkid
 sudo nano /mnt/restore/etc/fstab
 #contoh swap####UUID=12345678-90ab-cdef-1234-567890abcdef none swap sw 0 0
