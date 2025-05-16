@@ -174,6 +174,9 @@ sudo rm /mnt/vda4/btrfs-sda1-backup.img.gz
 sudo btrfs subvolume list /mnt
 sudo btrfs subvolume get-default /mnt
 
+#umount sda3 untuk dipanggil lagi
+sudo umount /mnt/root
+
 #mount ulang
 sudo mkdir /mnt/restore
 sudo mount -o subvol=@ /dev/sda3 /mnt/restore
