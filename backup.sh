@@ -134,7 +134,7 @@ exit
 #umount
 umount /mnt/root/dev /mnt/root/proc /mnt/root/sys
 
-#################
+#################vps
 sudo parted /dev/vda
 unit b
 print
@@ -144,9 +144,11 @@ set 3 boot on
 mkpart primary btrfs 20172924928B 35000000000B
 mkpart primary linux-swap 35000000001B 100%
 quit
-sudo mkfs.btfrs /dev/vda3
-sudo mkfs.ext4 /dev/vda5
 
+sudo mkfs.btrfs /dev/vda3
+sudo mkfs.btrfs /dev/vda4
+sudo mkswap /dev/vda5
+sudo swapon /dev/vda5
 
 
 
