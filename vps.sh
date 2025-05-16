@@ -30,17 +30,14 @@ sudo gunzip -c /mnt/vda4/btrfs-sda1-backup.img.gz | sudo btrfs receive /mnt/root
 # cek kembali memastikan file/folder @_backup ada
 ls /mnt/root
 
-# copy ke @, set default
+# copy ke @, set default & delete yang lama
 sudo btrfs subvolume snapshot /mnt/root/@_backup /mnt/root/@
 sudo btrfs subvolume set-default /mnt/root/@
+sudo btrfs subvolume delete /mnt/root/@_backup
 
-#cek kembali list & posisi btfrs
+#cek kembali list & posisi btfrs contoh:ID 257 gen 17 top level 5 path @
 sudo btrfs subvolume list /mnt/root
 sudo btrfs subvolume get-default /mnt/root
-
-# & delete yang lama
-sudo btrfs subvolume delete /mnt/root/@_backup
-sudo rm /mnt/vda4/btrfs-sda1-backup.img.gz
 
 #umount sda3 untuk dipanggil lagi
 sudo umount /mnt/root
@@ -73,6 +70,9 @@ sudo nano /mnt/restore/etc/fstab
 #efi###########UUID=1C50-31C8  /boot/efi       vfat    umask=0077      0       0
 #untuk sda3####UUID=b9ccfd73-d484-430b-a6bf-64f0457bd7d6 /               btrfs   defaults,subvol=@ 0       1
 #untuk sda4####UUID=abfaf6a9-ee0f-4069-b41b-d280e8a096ba /data           btrfs   defaults        0       2
+
+#delete file backup(optional)
+#sudo rm /mnt/vda4/btrfs-sda1-backup.img.gz
 
 #umount
 umount /mnt/restore/dev /mnt/restore/proc /mnt/restore/sys
