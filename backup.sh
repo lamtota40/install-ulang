@@ -182,11 +182,11 @@ sudo cat /mnt/restore/etc/fstab
 sudo blkid
 sudo nano /mnt/restore/etc/fstab
 
-###/dev/fd0        /media/floppy0  auto    rw,user,noauto,exec,utf8 0       0
-##UUID=1C50-31C8  /boot/efi       vfat    umask=0077      0       0
+#contoh swap####UUID=12345678-90ab-cdef-1234-567890abcdef none swap sw 0 0
+#flopy##########/dev/fd0        /media/floppy0  auto    rw,user,noauto,exec,utf8 0       0
+#efi###########UUID=1C50-31C8  /boot/efi       vfat    umask=0077      0       0
 #untuk sda3####UUID=b9ccfd73-d484-430b-a6bf-64f0457bd7d6 /               btrfs   defaults,subvol=@ 0       1
 #untuk sda4####UUID=abfaf6a9-ee0f-4069-b41b-d280e8a096ba /data           btrfs   defaults        0       2
-#contoh swap###UUID=12345678-90ab-cdef-1234-567890abcdef none swap sw 0 0
 
 #umount
 umount /mnt/restore/dev /mnt/restore/proc /mnt/restore/sys
