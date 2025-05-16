@@ -166,6 +166,7 @@ sudo btrfs subvolume snapshot /mnt/@_backup /mnt/@
 sudo btrfs subvolume set-default /mnt/@
 sudo btrfs subvolume delete /mnt/@_backup
 
+#mount ulang
 sudo mkdir /mnt/restore
 sudo mount -o subvol=@ /dev/sda3 /mnt/restore
 
@@ -174,10 +175,13 @@ sudo mount --bind /dev /mnt/restore/dev
 sudo mount --bind /proc /mnt/restore/proc
 sudo mount --bind /sys /mnt/restore/sys
 sudo chroot /mnt/restore
+[ -d /sys/firmware/efi ] && echo "UEFI" || echo "BIOS"
+#jika uefi##grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ubuntu
 grub-install /dev/vda
 sudo grub-reboot 0
 sudo grub-set-default 'Ubuntu'
 update-grub
+update-initramfs -u
 exit
 
 # atur FSTAB dan ganti UUID dengan yang baru
