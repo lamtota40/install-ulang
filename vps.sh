@@ -53,6 +53,7 @@ ls /mnt/restore
 sudo cat /mnt/restore/etc/fstab
 sudo cp /mnt/restore/etc/fstab /mnt/restore/etc/fstab.bak
 sudo blkid
+sudo swapon --show=NAME,UUID
 sudo nano /mnt/restore/etc/fstab
 #contoh swap####UUID=12345678-90ab-cdef-1234-567890abcdef none swap sw 0 0
 #flopy##########/dev/fd0        /media/floppy0  auto    rw,user,noauto,exec,utf8 0       0
