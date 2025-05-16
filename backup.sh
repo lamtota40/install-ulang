@@ -152,21 +152,23 @@ sudo mkfs.btrfs -L datafs /dev/vda4
 sudo mkswap /dev/vda5
 sudo swapon /dev/vda5
 
-#mount untuk tampung file backup
+# vda4 sebagai tampung file sementara & vda3 root
 sudo mkdir /mnt/vda4
 sudo mount /dev/vda4 /mnt/vda4
+sudo mkdir /mnt/root
+sudo mount /dev/vda3 /mnt/root
 
 #dari pengirim
 sudo rsync -avz -e ssh /mnt/usb/btrfs-sda1-backup.img.gz root@147.139.143.79:/mnt/vda4
 
 #estrak dan di terima btfrs
-sudo gunzip -c /mnt/vda4/btrfs-sda1-backup.img.gz | sudo btrfs receive /mnt/vda4
+sudo gunzip -c /mnt/vda4/btrfs-sda1-backup.img.gz | sudo btrfs receive /mnt/root
 
 # Rename, set default & delete yang lama
-sudo btrfs subvolume snapshot /mnt/@_backup /mnt/@
-sudo btrfs subvolume set-default /mnt/@
-sudo btrfs subvolume delete /mnt/@_backup
-sudo btrfs-sda1-backup.img.gz
+sudo btrfs subvolume snapshot /mnt/root/@_backup /mnt/@
+sudo btrfs subvolume set-default /mnt/root/@
+sudo btrfs subvolume delete /mnt/root/@_backup
+sudo rm /mnt/vda4/btrfs-sda1-backup.img.gz
 
 #cek kembali list & posisi btfrs
 sudo btrfs subvolume list /mnt
@@ -203,7 +205,8 @@ sudo nano /mnt/restore/etc/fstab
 #umount
 umount /mnt/restore/dev /mnt/restore/proc /mnt/restore/sys
 umount /mnt/restore
-umount /mnt
+umount /mnt/root
+umount /mnt/vda4
 
 sync
 sudo reboot
