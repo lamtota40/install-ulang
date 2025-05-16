@@ -135,6 +135,8 @@ exit
 umount /mnt/root/dev /mnt/root/proc /mnt/root/sys
 
 #################vps
+ini saya mau restore ya ibarat install ulang lah ini gimana ada yang harus si perbaiki atau di tambah?
+semua comand ini akan di jalankan melalui GRML toram
 sudo parted /dev/vda
 unit b
 print
@@ -145,8 +147,8 @@ mkpart primary btrfs 20172924928B 37000000000B
 mkpart primary linux-swap 37000000001B 100%
 quit
 
-sudo mkfs.btrfs /dev/vda3
-sudo mkfs.btrfs /dev/vda4
+sudo mkfs.btrfs -L rootfs /dev/vda3
+sudo mkfs.btrfs -L datafs /dev/vda4
 sudo mkswap /dev/vda5
 sudo swapon /dev/vda5
 
