@@ -27,6 +27,9 @@ sudo rsync -avz -e ssh /mnt/usb/btrfs-sda1-backup.img.gz root@147.139.143.79:/mn
 #estrak dan di terima btfrs
 sudo gunzip -c /mnt/vda4/btrfs-sda1-backup.img.gz | sudo btrfs receive /mnt/root
 
+# cek kembali memastikan file/folder @_backup ada
+ls /mnt/root
+
 # copy ke @, set default
 sudo btrfs subvolume snapshot /mnt/root/@_backup /mnt/@
 sudo btrfs subvolume set-default /mnt/root/@
