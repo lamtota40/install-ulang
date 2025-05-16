@@ -136,14 +136,15 @@ umount /mnt/root/dev /mnt/root/proc /mnt/root/sys
 
 #################
 sudo parted /dev/vda
-UNIT B
+unit b
 print
-resizepart 3 20GB
+rm 3
+mkpart primary btfrs 202375168B 20172924927B
 set 3 boot on
-mkpart primary btfrs 20GB 35GB
+mkpart primary btfrs 20172924927B 35GB
 mkpart primary btfrs 35GB 100%
 quit
-sudo mkfs.btfrs /dev/vda4
+sudo mkfs.btfrs /dev/vda3
 sudo mkfs.ext4 /dev/vda5
 
 
