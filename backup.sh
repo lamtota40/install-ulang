@@ -151,8 +151,13 @@ sudo mkswap /dev/vda5
 sudo swapon /dev/vda5
 
 #mount
-sudo mount /dev/vda3 /mnt
-sudo gunzip -c btrfs-sda1-backup.img.gz | sudo btrfs receive /mnt
+sudo mount /dev/vda4 /mnt
+
+#dari pengirim
+sudo rsync -avz -e ssh /path/lokal/btrfs-sda1-backup.img.gz root@1.2.3.4:/mnt
+
+#estrak dan di terima btfrs
+sudo gunzip -c /mnt/btrfs-sda1-backup.img.gz | sudo btrfs receive /mnt
 
 # Rename & delete yang lama
 sudo btrfs subvolume snapshot /mnt/@_backup /mnt/@
@@ -176,9 +181,12 @@ exit
 sudo cat /mnt/restore/etc/fstab
 sudo blkid
 sudo nano /mnt/restore/etc/fstab
-#contoh swap###UUID=12345678-90ab-cdef-1234-567890abcdef none swap sw 0 0
+
+###/dev/fd0        /media/floppy0  auto    rw,user,noauto,exec,utf8 0       0
+##UUID=1C50-31C8  /boot/efi       vfat    umask=0077      0       0
 #untuk sda3####UUID=b9ccfd73-d484-430b-a6bf-64f0457bd7d6 /               btrfs   defaults,subvol=@ 0       1
 #untuk sda4####UUID=abfaf6a9-ee0f-4069-b41b-d280e8a096ba /data           btrfs   defaults        0       2
+#contoh swap###UUID=12345678-90ab-cdef-1234-567890abcdef none swap sw 0 0
 
 #umount
 umount /mnt/restore/dev /mnt/restore/proc /mnt/restore/sys
