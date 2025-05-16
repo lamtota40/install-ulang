@@ -49,6 +49,16 @@ sudo mount -o subvol=@ /dev/vda3 /mnt/restore
 #memastikan file/forder sudah muncul
 ls /mnt/restore
 
+# atur FSTAB dan ganti UUID dengan yang baru
+sudo cat /mnt/restore/etc/fstab
+sudo blkid
+sudo nano /mnt/restore/etc/fstab
+#contoh swap####UUID=12345678-90ab-cdef-1234-567890abcdef none swap sw 0 0
+#flopy##########/dev/fd0        /media/floppy0  auto    rw,user,noauto,exec,utf8 0       0
+#efi###########UUID=1C50-31C8  /boot/efi       vfat    umask=0077      0       0
+#untuk sda3####UUID=b9ccfd73-d484-430b-a6bf-64f0457bd7d6 /               btrfs   defaults,subvol=@ 0       1
+#untuk sda4####UUID=abfaf6a9-ee0f-4069-b41b-d280e8a096ba /data           btrfs   defaults        0       2
+
 #install ulang grub
 sudo mount --bind /dev /mnt/restore/dev
 sudo mount --bind /proc /mnt/restore/proc
@@ -63,16 +73,6 @@ update-grub
 update-initramfs -u
 findmnt --verify --fstab
 exit
-
-# atur FSTAB dan ganti UUID dengan yang baru
-sudo cat /mnt/restore/etc/fstab
-sudo blkid
-sudo nano /mnt/restore/etc/fstab
-#contoh swap####UUID=12345678-90ab-cdef-1234-567890abcdef none swap sw 0 0
-#flopy##########/dev/fd0        /media/floppy0  auto    rw,user,noauto,exec,utf8 0       0
-#efi###########UUID=1C50-31C8  /boot/efi       vfat    umask=0077      0       0
-#untuk sda3####UUID=b9ccfd73-d484-430b-a6bf-64f0457bd7d6 /               btrfs   defaults,subvol=@ 0       1
-#untuk sda4####UUID=abfaf6a9-ee0f-4069-b41b-d280e8a096ba /data           btrfs   defaults        0       2
 
 #delete file backup(optional)
 #sudo rm /mnt/vda4/btrfs-sda1-backup.img.gz
