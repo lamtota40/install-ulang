@@ -176,6 +176,9 @@ exit
 sudo cat /mnt/restore/etc/fstab
 sudo blkid
 sudo nano /mnt/restore/etc/fstab
+#contoh swap###UUID=12345678-90ab-cdef-1234-567890abcdef none swap sw 0 0
+#untuk sda3
+#untuk sda4
 
 #umount
 umount /mnt/restore/dev /mnt/restore/proc /mnt/restore/sys
