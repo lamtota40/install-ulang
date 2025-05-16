@@ -151,14 +151,14 @@ sudo mkswap /dev/vda5
 sudo swapon /dev/vda5
 
 #mount
-sudo mkdir /mnt/restore
-sudo mount /dev/vda3 /mnt/restore
-sudo gunzip -c btrfs-sda1-backup.img.gz | sudo btrfs receive /mnt/restore
+sudo mount /dev/vda3 /mnt
+sudo gunzip -c btrfs-sda1-backup.img.gz | sudo btrfs receive /mnt
 
 # Rename & delete yang lama
 sudo btrfs subvolume snapshot /mnt/@_backup /mnt/@
 sudo btrfs subvolume delete /mnt/@_backup
 
+sudo mkdir /mnt/restore
 sudo mount -o subvol=@ /dev/sda3 /mnt/restore
 
 #install ulang grub
@@ -172,5 +172,6 @@ sudo grub-set-default 'Ubuntu'
 update-grub
 exit
 #umount
-umount /mnt/root/dev /mnt/root/proc /mnt/root/sys
+umount /mnt/restore/dev /mnt/restore/proc /mnt/restore/sys
+umount /mnt/restore
 
