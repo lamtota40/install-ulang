@@ -177,11 +177,10 @@ sudo grub-set-default 'Ubuntu'
 update-grub
 exit
 
-# ganti UUID dengan yang baru
+# atur FSTAB dan ganti UUID dengan yang baru
 sudo cat /mnt/restore/etc/fstab
 sudo blkid
 sudo nano /mnt/restore/etc/fstab
-
 #contoh swap####UUID=12345678-90ab-cdef-1234-567890abcdef none swap sw 0 0
 #flopy##########/dev/fd0        /media/floppy0  auto    rw,user,noauto,exec,utf8 0       0
 #efi###########UUID=1C50-31C8  /boot/efi       vfat    umask=0077      0       0
