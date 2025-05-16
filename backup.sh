@@ -141,8 +141,8 @@ print
 rm 3
 mkpart primary btfrs 202375168B 20172924927B
 set 3 boot on
-mkpart primary btrfs 20172924928B 35000000000B
-mkpart primary linux-swap 35000000001B 100%
+mkpart primary btrfs 20172924928B 37000000000B
+mkpart primary linux-swap 37000000001B 100%
 quit
 
 sudo mkfs.btrfs /dev/vda3
