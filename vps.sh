@@ -82,7 +82,6 @@ exit
 #umount
 umount /mnt/restore/dev /mnt/restore/proc /mnt/restore/sys
 umount /mnt/restore
-umount /mnt/root
 umount /mnt/vda4
 
 sync
