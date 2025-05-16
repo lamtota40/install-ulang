@@ -171,6 +171,12 @@ sudo grub-reboot 0
 sudo grub-set-default 'Ubuntu'
 update-grub
 exit
+
+# ganti UUID dengan yang baru
+sudo cat /mnt/restore/etc/fstab
+sudo blkid
+sudo nano /mnt/restore/etc/fstab
+
 #umount
 umount /mnt/restore/dev /mnt/restore/proc /mnt/restore/sys
 umount /mnt/restore
