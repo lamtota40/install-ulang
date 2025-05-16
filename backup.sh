@@ -193,6 +193,7 @@ sudo grub-reboot 0
 sudo grub-set-default 'Ubuntu'
 update-grub
 update-initramfs -u
+findmnt --verify --fstab
 exit
 
 # atur FSTAB dan ganti UUID dengan yang baru
