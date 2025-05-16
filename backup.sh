@@ -159,6 +159,8 @@ sudo gunzip -c btrfs-sda1-backup.img.gz | sudo btrfs receive /mnt/restore
 sudo btrfs subvolume snapshot /mnt/@_backup /mnt/@
 sudo btrfs subvolume delete /mnt/@_backup
 
+sudo mount -o subvol=@ /dev/sda3 /mnt/restore
+
 #install ulang grub
 sudo mount --bind /dev /mnt/restore/dev
 sudo mount --bind /proc /mnt/restore/proc
