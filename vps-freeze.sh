@@ -32,7 +32,8 @@ sudo update-grub
 exit
 
 sudo umount /mnt/restore
-rm -rf /mnt/btrfs_root
+#rm -rf /mnt/btrfs_root
+#rm -rf /mnt/restore
 
 sync
 reboot
