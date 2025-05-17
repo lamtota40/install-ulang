@@ -18,20 +18,21 @@ sudo btrfs subvolume set-default @ /mnt/btrfs_root
 cd
 sudo umount /mnt/btrfs_root
 
-#install ulang grub
+#mount ulang
+sudo mkdir /mnt/restore
+sudo mount -o subvol=@ /dev/vda3 /mnt/restore
+#set default ke sistem agar tidak bootlop ke GRML
 sudo mount --bind /dev /mnt/restore/dev
 sudo mount --bind /proc /mnt/restore/proc
 sudo mount --bind /sys /mnt/restore/sys
 sudo chroot /mnt/restore
-[ -d /sys/firmware/efi ] && echo "UEFI" || echo "BIOS"
-#jika uefi##grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ubuntu
-grub-install /dev/vda
 sudo grub-reboot 0
 sudo grub-set-default 'Ubuntu'
-update-grub
-update-initramfs -u
-findmnt --verify --fstab
+sudo update-grub
 exit
+
+sudo umount /mnt/restore
+
 
 sync
 reboot
