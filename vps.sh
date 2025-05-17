@@ -1,5 +1,3 @@
-ini saya mau restore ya ibarat install ulang lah ini gimana ada yang harus si perbaiki atau di tambah?
-semua comand ini akan di jalankan melalui GRML toram
 sudo parted /dev/vda
 unit b
 print
