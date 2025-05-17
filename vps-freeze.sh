@@ -14,7 +14,7 @@ cd /btrfs_root
 sudo btrfs subvolume delete @
 sudo btrfs subvolume snapshot @clean @
 sudo btrfs subvolume delete @clean
-sudo btrfs subvolume set-default @ /mnt/btrfs_root
+sudo btrfs subvolume set-default @
 cd
 sudo umount /mnt/btrfs_root
 
