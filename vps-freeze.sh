@@ -1,10 +1,10 @@
 # Snapshoot
-sudo mkdir -p /mnt/btrfs_root
-sudo mount -o subvolid=5 /dev/vda3 /mnt/btrfs_root
-cd /mnt/btrfs_root
+sudo mkdir -p /mnt/btrfs
+sudo mount -o subvolid=5 /dev/vda3 /mnt/btrfs
+cd /mnt/btrfs
 sudo btrfs subvolume snapshot -r @ @clean
 cd
-sudo umount /mnt/btrfs_root
+sudo umount /mnt/btrfs
 
 #restore dari GRML
 #!/bin/bash
