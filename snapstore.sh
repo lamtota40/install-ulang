@@ -1,10 +1,9 @@
 # Snapshoot
 sudo mkdir -p /mnt/btrfs_root
 sudo mount -o subvolid=5 /dev/sda1 /mnt/btrfs_root
-cd /mnt/btrfs_root
-sudo btrfs subvolume snapshot -r @ @clean
-sudo btrfs subvolume snapshot -r @home @home_clean
-cd
+sudo btrfs subvolume snapshot -r /mnt/btrfs_root/@ /mnt/btrfs_root/@clean
+sudo btrfs subvolume snapshot -r /mnt/btrfs_root/@home /mnt/btrfs_root/@home_clean
+
 
 sudo mkdir -p /mnt/btrfs
 sudo mount -o subvolid=0 /dev/sda1 /mnt/btrfs
