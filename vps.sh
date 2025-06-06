@@ -70,6 +70,7 @@ sudo chroot /mnt/restore
 grub-install /dev/vda
 sudo grub-reboot 0
 sudo grub-set-default 'Ubuntu'
+mkdir -p /data
 update-grub
 update-initramfs -u
 findmnt --verify --fstab
