@@ -1,3 +1,6 @@
+sudo cat /etc/fstab
+
+
 sudo parted /dev/vda
 unit b
 print
