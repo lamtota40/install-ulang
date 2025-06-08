@@ -12,7 +12,7 @@ sudo parted /dev/vda
 (parted) mkpart primary linux-swap 40GB 100%
 (parted) quit
 
-sudo mkfs.btrfs &f -L rootfs /dev/vda3
+sudo mkfs.btrfs -f -L rootfs /dev/vda3
 sudo mkfs.ext4 -L datafs /dev/vda4
 sudo mkswap /dev/vda5
 sudo swapon /dev/vda5
