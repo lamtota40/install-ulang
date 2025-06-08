@@ -1,6 +1,6 @@
 sudo cat /etc/fstab
-
-#(parted) mklabel gpt
+#parted /dev/sda
+#(parted) mklabel msdos
 #(parted) mkpart primary ext4 1048576B 2097151B
 #(parted) mkpart primary ext4 2097152B 202375167B
 
