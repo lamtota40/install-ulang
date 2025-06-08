@@ -1,14 +1,16 @@
 sudo cat /etc/fstab
 
+#(parted) mklabel gpt
+#(parted) mkpart primary ext4 1048576B 2097151B
+#(parted) mkpart primary ext4 2097152B 202375167B
 
 sudo parted /dev/vda
-rm 3
-mkpart primary btrfs 202375168B 20172924927B
-set 3 boot on
-mkpart primary btrfs 20172924928B 20GB
-mkpart primary btrfs 20GB 40GB
-mkpart primary linux-swap 40GB 100%
-quit
+(parted) rm 3
+(parted) mkpart primary btrfs 202375168B 20GB
+(parted) set 3 boot on
+(parted) mkpart primary ext4 20GB 40GB
+(parted) mkpart primary linux-swap 40GB 100%
+(parted) quit
 
 sudo mkfs.btrfs &f -L rootfs /dev/vda3
 sudo mkfs.ext4 -L datafs /dev/vda4
