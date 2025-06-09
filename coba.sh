@@ -34,6 +34,7 @@ apt install locales
 dpkg-reconfigure locales
 
 echo "ubuntu" > /etc/hostname
+sed -i "s/^127.0.0.1.*/127.0.0.1\tlocalhost $(hostname)/" /etc/hosts
 echo "/dev/vda1 / btrfs defaults 0 1" > /etc/fstab
 grub-install /dev/vda
 update-grub
