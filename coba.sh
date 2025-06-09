@@ -21,10 +21,9 @@ mount --bind /sys /mnt/sys
 chroot /mnt /bin/bash
 apt update
 export DEBIAN_FRONTEND=noninteractive
-echo "grub-pc grub-pc/install_devices multiselect /dev/vda" | debconf-set-selections
+echo "grub-pc grub-pc/install_devices_empty boolean true" | debconf-set-selections
 apt install -y linux-image-generic grub-pc btrfs-progs openssh-server sudo zsh ifupdown locales tzdata
 
-# Set timezone
 ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 dpkg-reconfigure -f noninteractive tzdata
 
@@ -43,9 +42,6 @@ iface lo inet loopback
 auto $IFACE
 iface $IFACE inet dhcp
 NETCONF
-
-rm -f /etc/resolv.conf
-echo -e "nameserver 8.8.8.8\nnameserver 1.1.1.1" > /etc/resolv.conf
 
 useradd -m -s /bin/bash linux
 echo "linux:qwerty" | chpasswd
