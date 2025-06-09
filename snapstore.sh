@@ -28,3 +28,6 @@ btrfs subvolume snapshot @clean @
 btrfs subvolume snapshot @home_clean @home
 sync
 reboot
+
+sudo btrfs receive /mnt/root < /mnt/vda4/btrfs-backup.img
+
