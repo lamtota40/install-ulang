@@ -15,7 +15,8 @@ which debootstrap && debootstrap --version
 debootstrap bionic /mnt http://archive.ubuntu.com/ubuntu/
 
 rm -rf /mnt/etc/resolv.conf
-cp /etc/resolv.conf /mnt/etc/resolv.conf
+#cp /etc/resolv.conf /mnt/etc/resolv.conf
+echo -e "nameserver 8.8.8.8\nnameserver 1.1.1.1" > /etc/resolv.conf
 
 mount --bind /dev /mnt/dev
 mount --bind /dev/pts /mnt/dev/pts
