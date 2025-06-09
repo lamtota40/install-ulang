@@ -23,15 +23,34 @@ mount --bind /proc /mnt/proc
 mount --bind /sys /mnt/sys
 chroot /mnt /bin/bash
 apt update
-apt install linux-image-generic grub-pc btrfs-progs openssh-server sudo zsh -y
+apt install linux-image-generic grub-pc btrfs-progs openssh-server sudo zsh ifupdown locales tzdata -y
 
 # Set timezone
 ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
-dpkg-reconfigure tzdata
+#dpkg-reconfigure tzdata
+dpkg-reconfigure -f noninteractive tzdata
 
 # Set locale
 apt install locales
-dpkg-reconfigure locales
+#dpkg-reconfigure locales
+locale-gen en_US.UTF-8
+update-locale LANG=en_US.UTF-8
+
+sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
+sudo sed -i '/^#\?PermitRootLogin/c\PermitRootLogin yes' /etc/ssh/sshd_config
+
+IFACE=$(ip -o link | awk -F': ' '/^[0-9]+: e/{print $2; exit}')
+echo "Detected interface: $IFACE"
+cat > /etc/network/interfaces <<NETCONF
+auto lo
+iface lo inet loopback
+
+auto $IFACE
+iface $IFACE inet dhcp
+NETCONF
+
+rm -f /etc/resolv.conf
+echo "nameserver 8.8.8.8" > /etc/resolv.conf
 
 echo "ubuntu" > /etc/hostname
 sed -i "s/^127.0.0.1.*/127.0.0.1\tlocalhost $(hostname)/" /etc/hosts
