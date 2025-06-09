@@ -1,3 +1,7 @@
+UUID=d406d971-bc6d-40f2-b572-6f74ac689736 /               ext4    errors=remount-ro 0       1
+UUID=1C50-31C8  /boot/efi       vfat    umask=0077      0       1
+/dev/fd0        /media/floppy0  auto    rw,user,noauto,exec,utf8 0       0
+
 sudo cat /etc/fstab
 #parted /dev/sda
 #(parted) mklabel msdos
