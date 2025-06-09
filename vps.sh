@@ -1,3 +1,8 @@
+UUID=1C50-31C8  /boot/efi  vfat  umask=0077  0  1
+UUID=6c817448-4539-4b11-a4d0-f543ce26e938  /  btrfs  defaults,subvol=@  0 1
+UUID=999b247d-151b-4f99-9b8e-958e38b1ecf7  /data  ext4  defaults  0  2
+UUID=e0d7ee80-c6b2-4c23-8d98-b571661cdaab  none  swap  sw  0  0
+
 UUID=d406d971-bc6d-40f2-b572-6f74ac689736 /               ext4    errors=remount-ro 0       1
 UUID=1C50-31C8  /boot/efi       vfat    umask=0077      0       1
 /dev/fd0        /media/floppy0  auto    rw,user,noauto,exec,utf8 0       0
