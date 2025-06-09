@@ -33,7 +33,7 @@ apt install locales
 dpkg-reconfigure locales
 
 echo "ubuntu" > /etc/hostname
-echo "/dev/sda3 / btrfs defaults 0 1" > /etc/fstab
+echo "/dev/vda1 / btrfs defaults 0 1" > /etc/fstab
 grub-install /dev/vda
 update-grub
 systemctl enable ssh
