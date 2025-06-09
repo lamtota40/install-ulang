@@ -88,6 +88,8 @@ exit
 #umount
 umount /mnt/restore/dev /mnt/restore/proc /mnt/restore/sys
 umount /mnt/restore
+rm -rf /mnt/restore
+rm -rf /mnt/vda4
 
 sync
 sudo reboot
