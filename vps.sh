@@ -25,7 +25,7 @@ sudo mount /dev/vda3 /mnt/root
 
 #dari pengirim
 ssh-keygen -f "~/.ssh/known_hosts" -R "147.139.143.79"
-sudo rsync -avz --info=progress2 -e ssh /mnt/usb/btrfs-sda1-backup.img.gz root@147.139.143.79:/mnt/vda4
+sudo rsync -avz --info=progress2 -e ssh /mnt/usb/btrfs-backup.img.gz root@147.139.143.79:/mnt/vda4
 
 #estrak dan di terima btfrs
 sudo gunzip -c /mnt/vda4/btrfs-sda1-backup.img.gz | sudo btrfs receive /mnt/root
