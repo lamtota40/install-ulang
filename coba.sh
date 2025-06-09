@@ -26,12 +26,8 @@ apt install -y linux-image-generic grub-pc btrfs-progs openssh-server sudo zsh i
 
 # Set timezone
 ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
-#dpkg-reconfigure tzdata
 dpkg-reconfigure -f noninteractive tzdata
 
-# Set locale
-apt install locales
-#dpkg-reconfigure locales
 locale-gen en_US.UTF-8
 update-locale LANG=en_US.UTF-8
 
