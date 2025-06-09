@@ -50,7 +50,12 @@ iface $IFACE inet dhcp
 NETCONF
 
 rm -f /etc/resolv.conf
-echo "nameserver 8.8.8.8" > /etc/resolv.conf
+echo -e "nameserver 8.8.8.8\nnameserver 1.1.1.1" > /etc/resolv.conf
+
+useradd -m -s /bin/bash linux
+echo "linux:qwerty" | chpasswd
+usermod -aG sudo linux
+echo "root:qwerty" | chpasswd
 
 echo "ubuntu" > /etc/hostname
 sed -i "s/^127.0.0.1.*/127.0.0.1\tlocalhost $(hostname)/" /etc/hosts
