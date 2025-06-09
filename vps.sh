@@ -45,6 +45,7 @@ sudo btrfs subvolume get-default /mnt/root
 #umount sda3 untuk dipanggil lagi
 sudo umount /mnt/root
 sudo rm -rf /mnt/root
+umount /mnt/vda4
 
 #mount ulang
 sudo mkdir /mnt/restore
@@ -87,7 +88,6 @@ exit
 #umount
 umount /mnt/restore/dev /mnt/restore/proc /mnt/restore/sys
 umount /mnt/restore
-umount /mnt/vda4
 
 sync
 sudo reboot
