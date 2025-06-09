@@ -20,15 +20,15 @@ mount --bind /proc /mnt/proc
 mount --bind /sys /mnt/sys
 chroot /mnt /bin/bash
 apt update
-export DEBIAN_FRONTEND=noninteractive
-echo "grub-pc grub-pc/install_devices_empty boolean true" | debconf-set-selections
-apt install -y linux-image-generic grub-pc btrfs-progs openssh-server sudo zsh ifupdown locales tzdata
-
+apt install -y locales tzdata
+locale-gen en_US.UTF-8
+update-locale LANG=en_US.UTF-8
 ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 dpkg-reconfigure -f noninteractive tzdata
 
-locale-gen en_US.UTF-8
-update-locale LANG=en_US.UTF-8
+export DEBIAN_FRONTEND=noninteractive
+echo "grub-pc grub-pc/install_devices multiselect /dev/vda" | debconf-set-selections
+apt install -y linux-image-generic grub-pc btrfs-progs openssh-server sudo zsh ifupdown
 
 sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
 sudo sed -i '/^#\?PermitRootLogin/c\PermitRootLogin yes' /etc/ssh/sshd_config
