@@ -4,7 +4,7 @@ mkpart primary btrfs 1MiB 20GB
 set 1 boot on
 quit
 
-mkfs.btrfs /dev/vda1
+mkfs.btrfs -L rootfs /dev/vda1
 mount /dev/vda1 /mnt
 wget https://ftp.debian.org/debian/pool/main/d/distro-info/distro-info_1.0+deb11u1_amd64.deb
 wget https://mirror.pit.teraswitch.com/debian/pool/main/d/distro-info-data/distro-info-data_0.51+deb11u1_all.deb
