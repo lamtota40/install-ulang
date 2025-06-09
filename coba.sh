@@ -14,11 +14,6 @@ dpkg -i debootstrap_1.0.141_all.deb
 which debootstrap && debootstrap --version
 debootstrap bionic /mnt http://archive.ubuntu.com/ubuntu/
 
-cat /mnt/etc/resolv.conf
-rm -rf /mnt/etc/resolv.conf
-#cp /etc/resolv.conf /mnt/etc/resolv.conf
-echo -e "nameserver 8.8.8.8\nnameserver 1.1.1.1" > /etc/resolv.conf
-
 mount --bind /dev /mnt/dev
 mount --bind /dev/pts /mnt/dev/pts
 mount --bind /proc /mnt/proc
