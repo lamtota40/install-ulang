@@ -4,7 +4,9 @@ sudo cat /etc/fstab
 #(parted) mkpart primary ext4 1048576B 2097151B
 #(parted) mkpart primary ext4 2097152B 202375167B
 
+lsblk
 sudo parted /dev/vda
+(parted) print
 (parted) rm 3
 (parted) mkpart primary btrfs 202375168B 20GB
 (parted) set 3 boot on
