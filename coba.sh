@@ -20,7 +20,9 @@ mount --bind /proc /mnt/proc
 mount --bind /sys /mnt/sys
 chroot /mnt /bin/bash
 apt update
-apt install linux-image-generic grub-pc btrfs-progs openssh-server sudo zsh ifupdown locales tzdata -y
+export DEBIAN_FRONTEND=noninteractive
+echo "grub-pc grub-pc/install_devices multiselect /dev/vda" | debconf-set-selections
+apt install -y linux-image-generic grub-pc btrfs-progs openssh-server sudo zsh ifupdown locales tzdata
 
 # Set timezone
 ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
