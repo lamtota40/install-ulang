@@ -6,7 +6,15 @@ quit
 
 mkfs.btrfs /dev/vda1
 mount /dev/vda1 /mnt
+wget https://ftp.debian.org/debian/pool/main/d/distro-info/distro-info_1.0+deb11u1_amd64.deb
+wget https://mirror.pit.teraswitch.com/debian/pool/main/d/distro-info-data/distro-info-data_0.51+deb11u1_all.deb
+dpkg -i distro-info*.deb
+dpkg -i debootstrap_1.0.141_all.deb
+which debootstrap && debootstrap --version
 debootstrap bionic /mnt http://archive.ubuntu.com/ubuntu/
+
+rm -rf /mnt/etc/resolv.conf
+cp /etc/resolv.conf /mnt/etc/resolv.conf
 
 mount --bind /dev /mnt/dev
 mount --bind /dev/pts /mnt/dev/pts
