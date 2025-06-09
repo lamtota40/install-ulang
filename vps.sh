@@ -74,7 +74,9 @@ sudo chroot /mnt/restore
 [ -d /sys/firmware/efi ] && echo "UEFI" || echo "BIOS"
 #jika uefi##grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ubuntu
 grub-install /dev/vda
-sudo grub-reboot 0
+#sudo grub-reboot 0
+sudo grub-editenv /boot/grub/grubenv list
+sudo grub-editenv /boot/grub/grubenv unset next_entry
 sudo grub-set-default 'Ubuntu'
 mkdir -p /data
 update-grub
