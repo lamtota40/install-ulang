@@ -30,3 +30,10 @@ grub-install /dev/vda
 update-grub
 systemctl enable ssh
 exit
+umount /mnt/dev/pts
+umount /mnt/dev
+umount /mnt/proc
+umount /mnt/sys
+umount /mnt
+reboot
+
