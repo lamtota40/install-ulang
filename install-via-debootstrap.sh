@@ -39,6 +39,7 @@ apt install -y linux-image-generic grub-pc btrfs-progs openssh-server sudo zsh i
 sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
 sudo sed -i '/^#\?PermitRootLogin/c\PermitRootLogin yes' /etc/ssh/sshd_config
 
+cp /etc/resolv.conf /etc/resolv.conf.bak
 rm -rf /etc/resolv.conf
 echo "nameserver 8.8.8.8" > /etc/resolv.conf
 echo "nameserver 1.1.1.1" >> /etc/resolv.conf
