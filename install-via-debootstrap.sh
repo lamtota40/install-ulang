@@ -23,7 +23,7 @@ mount --bind /dev /mnt/dev
 mount --bind /dev/pts /mnt/dev/pts
 mount --bind /proc /mnt/proc
 mount --bind /sys /mnt/sys
-chroot /mnt /bin/bash
+cat <<'EOL' | chroot /mnt /bin/bash
 mkdir -p /root
 apt update
 apt install -y locales tzdata
@@ -61,7 +61,8 @@ echo "/dev/vda1 / btrfs defaults,subvol=@ 0 1" > /etc/fstab
 grub-install /dev/vda
 update-grub
 systemctl enable ssh
-exit
+EOL
+
 umount /mnt/dev/pts
 umount /mnt/dev
 umount /mnt/proc
