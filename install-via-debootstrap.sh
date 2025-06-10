@@ -63,6 +63,8 @@ update-grub
 systemctl enable ssh
 EOL
 
+btrfs subvolume set-default /mnt
+
 umount /mnt/dev/pts
 umount /mnt/dev
 umount /mnt/proc
