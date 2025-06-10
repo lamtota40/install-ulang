@@ -35,14 +35,12 @@ sudo sed -i '/^#\?PermitRootLogin/c\PermitRootLogin yes' /etc/ssh/sshd_config
 rm -rf /etc/resolv.conf
 echo "nameserver 8.8.8.8" > /etc/resolv.conf
 
-IFACE=$(ip -o link | awk -F': ' '/^[0-9]+: e/{print $2; exit}')
-echo "Detected interface: $IFACE"
 cat > /etc/network/interfaces <<NETCONF
 auto lo
 iface lo inet loopback
 
-auto $IFACE
-iface $IFACE inet dhcp
+auto ens3
+iface ens3 inet dhcp
 NETCONF
 
 useradd -m -s /bin/bash linux
@@ -51,7 +49,7 @@ usermod -aG sudo linux
 echo "root:qwerty" | chpasswd
 
 echo "ubuntu" > /etc/hostname
-sed -i "s/^127.0.0.1.*/127.0.0.1\tlocalhost $(hostname)/" /etc/hosts
+sed -i "s/^127.0.0.1.*/127.0.0.1\tlocalhost ubuntu/" /etc/hosts
 echo "/dev/vda1 / btrfs defaults 0 1" > /etc/fstab
 grub-install /dev/vda
 update-grub
