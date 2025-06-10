@@ -41,6 +41,7 @@ sudo sed -i '/^#\?PermitRootLogin/c\PermitRootLogin yes' /etc/ssh/sshd_config
 
 rm -rf /etc/resolv.conf
 echo "nameserver 8.8.8.8" > /etc/resolv.conf
+echo "nameserver 1.1.1.1" >> /etc/resolv.conf
 
 cat > /etc/network/interfaces <<NETCONF
 auto lo
