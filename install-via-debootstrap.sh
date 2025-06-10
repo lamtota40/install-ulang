@@ -1,8 +1,9 @@
-sudo parted /dev/vda mklabel msdos
-sudo parted /dev/vda
-mkpart primary btrfs 1MiB 20GB
-set 1 boot on
-quit
+#!/bin/bash
+
+sudo parted -s /dev/vda mklabel msdos
+sleep 3
+sudo parted -s /dev/vda mkpart primary btrfs 1MiB 20GB
+sudo parted -s /dev/vda set 1 boot on
 
 mkfs.btrfs -L rootfs /dev/vda1
 mount /dev/vda1 /mnt
