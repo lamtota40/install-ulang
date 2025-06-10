@@ -56,7 +56,7 @@ echo "root:qwerty" | chpasswd
 
 echo "ubuntu" > /etc/hostname
 sed -i "s/^127.0.0.1.*/127.0.0.1\tlocalhost ubuntu/" /etc/hosts
-echo "/dev/vda1 / btrfs defaults 0 1" > /etc/fstab
+echo "/dev/vda1 / btrfs defaults,subvol=@ 0 1" > /etc/fstab
 grub-install /dev/vda
 update-grub
 systemctl enable ssh
