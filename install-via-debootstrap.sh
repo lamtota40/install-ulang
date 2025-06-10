@@ -36,8 +36,8 @@ export DEBIAN_FRONTEND=noninteractive
 echo "grub-pc grub-pc/install_devices multiselect /dev/vda" | debconf-set-selections
 apt install -y linux-image-generic grub-pc btrfs-progs openssh-server sudo zsh ifupdown parted
 
-sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
-sudo sed -i '/^#\?PermitRootLogin/c\PermitRootLogin yes' /etc/ssh/sshd_config
+cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
+sed -i '/^#\?PermitRootLogin/c\PermitRootLogin yes' /etc/ssh/sshd_config
 
 cp /etc/resolv.conf /etc/resolv.conf.bak
 rm -rf /etc/resolv.conf
