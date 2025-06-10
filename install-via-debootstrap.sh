@@ -3,8 +3,6 @@
 sudo parted -s /dev/vda mklabel msdos
 sudo partprobe /dev/vda
 sudo udevadm settle
-
-sleep 3
 sudo parted -s /dev/vda mkpart primary btrfs 1MiB 20GB
 sudo parted -s /dev/vda set 1 boot on
 
