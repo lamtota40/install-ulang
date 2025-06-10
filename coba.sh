@@ -32,6 +32,9 @@ apt install -y linux-image-generic grub-pc btrfs-progs openssh-server sudo zsh i
 sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
 sudo sed -i '/^#\?PermitRootLogin/c\PermitRootLogin yes' /etc/ssh/sshd_config
 
+rm -rf /etc/resolv.conf
+echo "nameserver 8.8.8.8" > /etc/resolv.conf
+
 IFACE=$(ip -o link | awk -F': ' '/^[0-9]+: e/{print $2; exit}')
 echo "Detected interface: $IFACE"
 cat > /etc/network/interfaces <<NETCONF
@@ -62,4 +65,3 @@ umount /mnt
 sync
 
 reboot
-
