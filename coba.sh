@@ -18,6 +18,7 @@ mount --bind /dev/pts /mnt/dev/pts
 mount --bind /proc /mnt/proc
 mount --bind /sys /mnt/sys
 chroot /mnt /bin/bash
+mkdir -p /root
 apt update
 apt install -y locales tzdata
 locale-gen en_US.UTF-8
