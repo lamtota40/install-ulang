@@ -51,7 +51,7 @@ usermod -aG sudo linux
 echo "root:qwerty" | chpasswd
 
 echo "ubuntu" > /etc/hostname
-sed -i "s/^127.0.0.1.*/127.0.0.1\tlocalhost ubuntu/" /etc/hosts
+sed -i "s/^127.0.0.1.*/127.0.0.1\tlocalhost $(hostname)/" /etc/hosts
 echo "/dev/vda1 / btrfs defaults 0 1" > /etc/fstab
 grub-install /dev/vda
 update-grub
