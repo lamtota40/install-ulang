@@ -57,7 +57,9 @@ echo "root:qwerty" | chpasswd
 
 echo "ubuntu" > /etc/hostname
 sed -i "s/^127.0.0.1.*/127.0.0.1\tlocalhost ubuntu/" /etc/hosts
-echo "/dev/vda1 / btrfs defaults,subvol=@ 0 1" > /etc/fstab
+cp /etc/fstab /etc/fstab.bak
+UUID=$(blkid -s UUID -o value /dev/vda1)
+echo "UUID=$UUID / btrfs defaults,subvol=@ 0 1" > /etc/fstab
 grub-install /dev/vda
 update-grub
 systemctl enable ssh
