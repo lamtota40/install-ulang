@@ -27,6 +27,13 @@ mount --bind /proc /mnt/proc
 mount --bind /sys /mnt/sys
 cat <<'EOL' | chroot /mnt /bin/bash
 mkdir -p /root
+cat > /etc/apt/sources.list <<'EOF'
+deb http://archive.ubuntu.com/ubuntu bionic main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu bionic-updates main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu bionic-backports main restricted universe multiverse
+deb http://security.ubuntu.com/ubuntu bionic-security main restricted universe multiverse
+EOF
+
 apt update
 apt install -y locales tzdata
 locale-gen en_US.UTF-8
