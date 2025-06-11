@@ -36,7 +36,7 @@ dpkg-reconfigure -f noninteractive tzdata
 
 export DEBIAN_FRONTEND=noninteractive
 echo "grub-pc grub-pc/install_devices multiselect /dev/vda" | debconf-set-selections
-apt install -y linux-image-generic grub-pc btrfs-progs openssh-server sudo zsh ifupdown parted
+apt install -y linux-image-generic grub-pc btrfs-progs openssh-server sudo zsh ifupdown parted rsync
 
 cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
 sed -i '/^#\?PermitRootLogin/c\PermitRootLogin yes' /etc/ssh/sshd_config
