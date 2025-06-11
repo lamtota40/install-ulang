@@ -43,7 +43,7 @@ dpkg-reconfigure -f noninteractive tzdata
 
 export DEBIAN_FRONTEND=noninteractive
 echo "grub-pc grub-pc/install_devices multiselect /dev/vda" | debconf-set-selections
-apt install -y linux-image-generic grub-pc btrfs-progs openssh-server sudo zsh ifupdown rsync jq lsof curl unzip zip
+apt install -y linux-image-generic grub-pc btrfs-progs openssh-server sudo zsh ifupdown rsync jq lsof curl unzip zip initramfs-tools
 apt install -y parted e2fsprogs dosfstools
 
 cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
@@ -72,6 +72,7 @@ sed -i "s/^127.0.0.1.*/127.0.0.1\tlocalhost ubuntu/" /etc/hosts
 cp /etc/fstab /etc/fstab.bak
 UUID=$(blkid -s UUID -o value /dev/vda1)
 echo "UUID=$UUID / btrfs defaults,subvol=@ 0 1" > /etc/fstab
+update-initramfs -u
 grub-install /dev/vda
 update-grub
 systemctl enable ssh
