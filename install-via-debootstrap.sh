@@ -78,4 +78,5 @@ umount /mnt/dev
 umount /mnt/proc
 umount /mnt/sys
 umount /mnt
+rm -rf debootstrap_1.0.141_all.deb distro-info_1.0+deb11u1_amd64.deb distro-info-data_0.51+deb11u1_all.deb
 sync
