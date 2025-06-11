@@ -1,11 +1,11 @@
 #!/bin/bash
 
-sudo parted /dev/vda mklabel msdos ---pretend-input-tty <<EOF
+parted /dev/vda mklabel msdos ---pretend-input-tty <<EOF
 yes
 EOF
 sleep 3
-sudo parted /dev/vda mkpart primary btrfs 1MiB 20GB
-sudo parted /dev/vda set 1 boot on
+parted /dev/vda mkpart primary btrfs 1MiB 20GB
+parted /dev/vda set 1 boot on
 
 mkfs.btrfs -f -L rootfs /dev/vda1
 mount /dev/vda1 /mnt
@@ -78,3 +78,4 @@ umount /mnt/sys
 umount /mnt
 rm -rf debootstrap_1.0.141_all.deb distro-info_1.0+deb11u1_amd64.deb distro-info-data_0.51+deb11u1_all.deb
 sync
+reboot
