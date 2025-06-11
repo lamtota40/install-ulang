@@ -37,25 +37,38 @@ deb http://security.ubuntu.com/ubuntu bionic-security main restricted universe m
 EOF
 
 apt update
+
+# Instal paket utama
 apt install -y locales tzdata
 locale-gen en_US.UTF-8
 update-locale LANG=en_US.UTF-8
 ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 dpkg-reconfigure -f noninteractive tzdata
 
+# Paket penting untuk boot dan sistem
 export DEBIAN_FRONTEND=noninteractive
 echo "grub-pc grub-pc/install_devices multiselect /dev/vda" | debconf-set-selections
 apt install -y linux-image-generic grub-pc btrfs-progs openssh-server sudo zsh ifupdown rsync jq lsof curl unzip zip initramfs-tools
 apt install -y parted e2fsprogs dosfstools
 
+# ✅ Tambahan agar passwd/login root tidak error
+apt install -y login passwd shadow libpam-modules libpam-runtime libpam-modules-bin libpam0g
+usermod -s /bin/bash root
+echo 'LANG=en_US.UTF-8' > /etc/environment
+cp /etc/skel/.bashrc /root/
+cp /etc/skel/.profile /root/
+
+# SSH config
 cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
 sed -i '/^#\?PermitRootLogin/c\PermitRootLogin yes' /etc/ssh/sshd_config
 
+# DNS config
 cp /etc/resolv.conf /etc/resolv.conf.bak
 rm -rf /etc/resolv.conf
 echo "nameserver 8.8.8.8" > /etc/resolv.conf
 echo "nameserver 1.1.1.1" >> /etc/resolv.conf
 
+# Jaringan
 cat > /etc/network/interfaces <<NETCONF
 auto lo
 iface lo inet loopback
@@ -64,11 +77,13 @@ auto ens3
 iface ens3 inet dhcp
 NETCONF
 
+# User & password
 useradd -m -s /bin/bash linux
 echo "linux:qwerty" | chpasswd
 usermod -aG sudo linux
 echo "root:qwerty" | chpasswd
 
+# Hostname dan fstab
 echo "ubuntu" > /etc/hostname
 sed -i "s/^127.0.0.1.*/127.0.0.1\tlocalhost ubuntu/" /etc/hosts
 cp /etc/fstab /etc/fstab.bak
@@ -80,8 +95,11 @@ update-grub
 systemctl enable ssh
 EOL
 
-btrfs subvolume set-default /mnt
+# Set default subvolume ke ID dari @
+ID=$(btrfs subvolume show /mnt | grep 'ID ' | awk '{print $2}')
+btrfs subvolume set-default "$ID" /mnt
 
+# Unmount dan bereskan
 umount /mnt/dev/pts
 umount /mnt/dev
 umount /mnt/proc
@@ -89,4 +107,5 @@ umount /mnt/sys
 umount /mnt
 rm -rf debootstrap_1.0.141_all.deb distro-info_1.0+deb11u1_amd64.deb distro-info-data_0.51+deb11u1_all.deb
 sync
+read "instalasi Selesai"
 reboot
