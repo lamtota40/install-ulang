@@ -63,6 +63,8 @@ echo "ubuntu" > /etc/hostname
 sed -i "s/^127.0.0.1.*/127.0.0.1\tlocalhost ubuntu/" /etc/hosts
 cp /etc/fstab /etc/fstab.bak
 UUID=$(blkid -s UUID -o value /dev/vda1)
+echo $UUID
+blkid
 echo "UUID=$UUID / btrfs defaults,subvol=@ 0 1" > /etc/fstab
 grub-install /dev/vda
 update-grub
