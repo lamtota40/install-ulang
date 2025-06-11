@@ -96,7 +96,7 @@ systemctl enable ssh
 EOL
 
 # Set default subvolume ke ID dari @
-ID=$(btrfs subvolume show /mnt | grep 'ID ' | awk '{print $2}')
+ID=$(btrfs subvolume show / 2>&1 | awk -F': *' '/Subvolume ID:/ {print $2}' | xargs)
 btrfs subvolume set-default "$ID" /mnt
 
 # Unmount dan bereskan
