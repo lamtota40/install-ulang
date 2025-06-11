@@ -1,12 +1,13 @@
 #!/bin/bash
 
-sudo parted -s /dev/vda mklabel msdos
-sudo partprobe /dev/vda
-sudo udevadm settle
-sudo parted -s /dev/vda mkpart primary btrfs 1MiB 20GB
-sudo parted -s /dev/vda set 1 boot on
+sudo parted /dev/vda mklabel msdos --pretend-input-tty <<EOF
+yes
+EOF
+sleep 3
+sudo parted /dev/vda mkpart primary btrfs 1MiB 20GB
+sudo parted /dev/vda set 1 boot on
 
-mkfs.btrfs -L rootfs /dev/vda1
+mkfs.btrfs -f -L rootfs /dev/vda1
 mount /dev/vda1 /mnt
 
 btrfs subvolume create /mnt/@
