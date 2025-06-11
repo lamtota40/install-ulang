@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo parted /dev/vda mklabel msdos --pretend-input-tty <<EOF
+sudo parted /dev/vda mklabel msdos ---pretend-input-tty <<EOF
 yes
 EOF
 sleep 3
