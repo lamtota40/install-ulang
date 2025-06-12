@@ -52,7 +52,7 @@ apt install -y linux-image-generic software-properties-common grub-pc btrfs-prog
 apt install -y parted e2fsprogs dosfstools
 
 # ✅ Tambahan agar passwd/login root tidak error
-apt install -y login passwd shadow libpam-modules libpam-runtime libpam-modules-bin libpam0g
+apt install -y login passwd libpam-modules libpam-runtime libpam-modules-bin libpam0g
 usermod -s /bin/bash root
 echo 'LANG=en_US.UTF-8' > /etc/environment
 cp /etc/skel/.bashrc /root/
