@@ -49,10 +49,10 @@ dpkg-reconfigure -f noninteractive tzdata
 export DEBIAN_FRONTEND=noninteractive
 echo "grub-pc grub-pc/install_devices multiselect /dev/vda" | debconf-set-selections
 apt install -y linux-image-generic software-properties-common grub-pc btrfs-progs openssh-server sudo nano zsh ifupdown rsync jq lsof curl unzip zip initramfs-tools
-apt install -y parted e2fsprogs dosfstools
+apt install -y parted e2fsprogs dosfstools cron rsyslog
 
 # ✅ Tambahan agar passwd/login root tidak error
-apt install -y login passwd libpam-modules libpam-runtime libpam-modules-bin libpam0g
+apt install -y shadow login passwd libpam-modules libpam-runtime libpam-modules-bin libpam0g
 usermod -s /bin/bash root
 echo 'LANG=en_US.UTF-8' > /etc/environment
 cp /etc/skel/.bashrc /root/
