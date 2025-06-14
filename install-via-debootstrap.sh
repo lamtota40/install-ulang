@@ -14,6 +14,10 @@ btrfs subvolume create /mnt/@
 umount /mnt
 mount -o subvol=@ /dev/vda1 /mnt
 
+mkdir -p /root
+chmod 700 /root
+chown root:root /root
+
 wget http://ftp.debian.org/debian/pool/main/d/debootstrap/debootstrap_1.0.141_all.deb
 wget https://ftp.debian.org/debian/pool/main/d/distro-info/distro-info_1.0+deb11u1_amd64.deb
 wget https://mirror.pit.teraswitch.com/debian/pool/main/d/distro-info-data/distro-info-data_0.51+deb11u1_all.deb
@@ -26,10 +30,6 @@ mount --bind /dev/pts /mnt/dev/pts
 mount --bind /proc /mnt/proc
 mount --bind /sys /mnt/sys
 cat <<'EOL' | chroot /mnt /bin/bash
-mkdir -p /root
-chmod 700 /root
-chown root:root /root
-echo 'd /root 0700 root root -' > /etc/tmpfiles.d/rootdir.conf
 # Hostname
 echo "ubuntu" > /etc/hostname
 sed -i 's/^127\.0\.0\.1[[:space:]]\+localhost$/127.0.0.1\tubuntu\n127.0.0.1\tlocalhost/' /etc/hosts
