@@ -29,7 +29,7 @@ cat <<'EOL' | chroot /mnt /bin/bash
 mkdir -p /root
 chmod 700 /root
 chown root:root /root
-echo 'd /home 0755 root root -' > /etc/tmpfiles.d/home.conf
+echo 'd /root 0700 root root -' > /etc/tmpfiles.d/rootdir.conf
 cat > /etc/apt/sources.list <<'EOF'
 deb http://archive.ubuntu.com/ubuntu bionic main restricted universe multiverse
 deb http://archive.ubuntu.com/ubuntu bionic-updates main restricted universe multiverse
