@@ -30,6 +30,11 @@ mkdir -p /root
 chmod 700 /root
 chown root:root /root
 echo 'd /root 0700 root root -' > /etc/tmpfiles.d/rootdir.conf
+# Hostname
+echo "ubuntu" > /etc/hostname
+sed -i 's/^127\.0\.0\.1[[:space:]]\+localhost$/127.0.0.1\tubuntu\n127.0.0.1\tlocalhost/' /etc/hosts
+sudo hostnamectl set-hostname ubuntu
+
 cat > /etc/apt/sources.list <<'EOF'
 deb http://archive.ubuntu.com/ubuntu bionic main restricted universe multiverse
 deb http://archive.ubuntu.com/ubuntu bionic-updates main restricted universe multiverse
@@ -84,9 +89,6 @@ echo "linux:qwerty" | chpasswd
 usermod -aG sudo linux
 echo "root:qwerty" | chpasswd
 
-# Hostname dan fstab
-echo "ubuntu" > /etc/hostname
-sed -i "s/^127.0.0.1.*/127.0.0.1\tlocalhost ubuntu/" /etc/hosts
 cp /etc/fstab /etc/fstab.bak
 UUID=$(blkid -s UUID -o value /dev/vda1)
 echo "UUID=$UUID / btrfs defaults,subvol=@ 0 1" > /etc/fstab
