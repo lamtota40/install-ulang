@@ -46,7 +46,8 @@ apt update
 
 # Instal paket utama
 apt install -y locales tzdata
-locale-gen en_US.UTF-8
+echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
+locale-gen
 update-locale LANG=en_US.UTF-8
 ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 dpkg-reconfigure -f noninteractive tzdata
