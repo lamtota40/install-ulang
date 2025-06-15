@@ -55,7 +55,7 @@ dpkg-reconfigure -f noninteractive tzdata
 export DEBIAN_FRONTEND=noninteractive
 echo "grub-pc grub-pc/install_devices multiselect /dev/vda" | debconf-set-selections
 apt install -y linux-image-generic systemd-sysv software-properties-common grub-pc net-tools telnet btrfs-progs openssh-server sudo nano zsh bash-completion ifupdown rsync jq lsof curl unzip zip initramfs-tools
-apt install -y parted e2fsprogs dosfstools cron rsyslog
+apt install -y parted e2fsprogs dosfstools rsyslog
 
 # ✅ Tambahan agar passwd/login root tidak error
 apt install -y shadow login passwd libpam-modules libpam-runtime libpam-modules-bin libpam0g
