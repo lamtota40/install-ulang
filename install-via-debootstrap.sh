@@ -86,9 +86,9 @@ NETCONF
 
 # User & password
 useradd -m -s /bin/bash linux
-echo "linux:qwerty" | chpasswd
+echo "linux:Master$40" | chpasswd
 usermod -aG sudo linux
-echo "root:qwerty" | chpasswd
+echo "root:Master$40" | chpasswd
 
 cp /etc/fstab /etc/fstab.bak
 UUID=$(blkid -s UUID -o value /dev/vda1)
