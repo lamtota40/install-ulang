@@ -48,9 +48,9 @@ apt update
 # Instal paket utama
 apt install -y locales tzdata
 echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
-echo 'LANG=en_US.UTF-8' > /etc/environment
 locale-gen
 update-locale LANG=en_US.UTF-8
+echo 'LANG=en_US.UTF-8' > /etc/environment
 export LANG=en_US.UTF-8
 
 ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
@@ -88,9 +88,9 @@ NETCONF
 
 # User & password
 useradd -m -s /bin/bash linux
-echo "linux:Master$40" | chpasswd
+echo "linux:Ch1ndy12$" | chpasswd
 usermod -aG sudo linux
-echo "root:Master$40" | chpasswd
+echo "root:Ch1ndy12$" | chpasswd
 
 cp /etc/fstab /etc/fstab.bak
 UUID=$(blkid -s UUID -o value /dev/vda1)
