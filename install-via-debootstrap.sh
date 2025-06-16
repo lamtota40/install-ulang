@@ -30,6 +30,7 @@ mount --bind /dev/pts /mnt/dev/pts
 mount --bind /proc /mnt/proc
 mount --bind /sys /mnt/sys
 cat <<'EOL' | chroot /mnt /bin/bash
+export DEBIAN_FRONTEND=noninteractive
 # Hostname
 echo "ubuntu" > /etc/hostname
 sed -i 's/^127\.0\.0\.1[[:space:]]\+localhost$/127.0.0.1\tubuntu\n127.0.0.1\tlocalhost/' /etc/hosts
@@ -47,13 +48,15 @@ apt update
 # Instal paket utama
 apt install -y locales tzdata
 echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
+echo 'LANG=en_US.UTF-8' > /etc/environment
 locale-gen
 update-locale LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
+
 ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 dpkg-reconfigure -f noninteractive tzdata
 
 # Paket penting untuk boot dan sistem
-export DEBIAN_FRONTEND=noninteractive
 echo "grub-pc grub-pc/install_devices multiselect /dev/vda" | debconf-set-selections
 apt install -y linux-image-generic systemd-sysv software-properties-common grub-pc net-tools telnet btrfs-progs openssh-server sudo nano zsh bash-completion ifupdown rsync jq lsof curl unzip zip initramfs-tools
 apt install -y parted e2fsprogs dosfstools rsyslog
@@ -61,7 +64,6 @@ apt install -y parted e2fsprogs dosfstools rsyslog
 # ✅ Tambahan agar passwd/login root tidak error
 apt install -y shadow login passwd libpam-modules libpam-runtime libpam-modules-bin libpam0g
 usermod -s /bin/bash root
-echo 'LANG=en_US.UTF-8' > /etc/environment
 cp /etc/skel/.bashrc /root/
 cp /etc/skel/.profile /root/
 
